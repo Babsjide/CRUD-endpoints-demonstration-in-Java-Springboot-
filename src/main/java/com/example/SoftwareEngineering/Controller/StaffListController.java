@@ -16,13 +16,13 @@ public class StaffListController {
         this.staffListService = staffListService;
     }
 
-    @PostMapping("/addStaff")
+    @PostMapping("/addStaff") // Create/add new staff detail
     public ResponseEntity<StaffList> addStaff(@RequestBody StaffList staffList) {
         StaffList savedStaff = staffListService.addStaff(staffList);
         return ResponseEntity.ok(savedStaff);
     }
 
-    @GetMapping("/getStaffById/{id}")
+    @GetMapping("/getStaffById/{id}") // Retrieve a staff detail using the Staff's ID
     public ResponseEntity<StaffList> getStaff(@PathVariable("id") String id) {
         final StaffList staffById = staffListService.getStaff(id);
         if (staffById != null) {
@@ -31,14 +31,14 @@ public class StaffListController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/updateStaff")
+    @PutMapping("/updateStaff") // Update the staff list
     public ResponseEntity<StaffList> updateStaffList(@RequestBody StaffList staffList) {
         StaffList updatedList = staffListService.updateStaffList(staffList);
         return ResponseEntity.ok(updatedList);
 
     }
 
-    @DeleteMapping("/deleteStaffById/{id}")
+    @DeleteMapping("/deleteStaffById/{id}") // Delete a staff record using the ID
     public ResponseEntity<StaffList> deleteStaff(@PathVariable("id") String id) {
         if (id != null) {
             staffListService.deleteStaff(id);
